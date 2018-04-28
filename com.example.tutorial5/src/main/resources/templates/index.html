@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Index</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+	 	<link th:href="@{/main.css}" rel="stylesheet"/>
+		
+	</head>
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+			<h2>Welcome To Tutorial 05 APAP</h2>
+			
+			<h2> Welcome </h2>
+			<a href = "/login" > Login </a>
+			<br /><a th:if="${#httpServletRequest.isUserInRole('ADMIN')}" href='/student/viewall'>View All Student</a>
+			
+			<div th:if="${#httpServletRequest.isUserInRole('ADMIN')}">
+			<br /><h2>View Student by NPM</h2>
+			<form action="/student/view" method="get">
+				<input class="ts-form-search" type="text" placeholder="Search" aria-label="Search" name="npm" />
+		 		<button class="btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		 	</form>
+		 	</div>
+			
+			<div th:if="${#httpServletRequest.isUserInRole('USER')}">
+			<br /><h2>View Student by NPM</h2>
+			<form action="/student/view" method="get">
+				<input class="ts-form-search" type="text" placeholder="Search" aria-label="Search" name="npm" />
+		 		<button class="btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		 	</form>
+		 	</div>
+			
+		<div th:replace="fragments/fragment :: footer"></div>
+	</body>
+</html>
